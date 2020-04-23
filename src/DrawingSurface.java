@@ -1,6 +1,4 @@
 import javax.swing.*;
-
-
 import processing.core.PApplet;
 
 public class DrawingSurface extends PApplet
@@ -8,7 +6,6 @@ public class DrawingSurface extends PApplet
 	// FIELDS
 	RectButton r; 
 	CalendarUI cal;
-
 	
 	// CONSTRUCTOR
 	public DrawingSurface()
@@ -47,12 +44,6 @@ public class DrawingSurface extends PApplet
 
 		    
 //		    Activity one = new Activity(a, duration, details, t);
-		}
-		
+		}		
 	}
-
-
 }
-
-
- 

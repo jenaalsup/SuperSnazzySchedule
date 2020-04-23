@@ -7,7 +7,6 @@ public class Main
 {
 	public static void main(String args[]) 
 	{
-		// --location=x,y
 		DrawingSurface drawing = new DrawingSurface();
 		PApplet.runSketch(new String[]{""}, drawing);
 		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
