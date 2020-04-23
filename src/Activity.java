@@ -1,4 +1,5 @@
 import java.util.Date;
+import processing.core.PApplet;
 
 public class Activity {
 
@@ -19,6 +20,10 @@ public class Activity {
 	}
 	
 	// METHODS
+	
+	
+	
+	
 	public void setDuration(int amount)   
 	{
 		duration = amount;

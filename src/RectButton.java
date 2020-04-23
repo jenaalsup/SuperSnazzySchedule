@@ -2,22 +2,10 @@ import processing.core.PApplet;
 
 public class RectButton extends Button
 {
-	  public RectButton(int ix, int iy, int isize, int icolor, int ihighlight) 
+	  public RectButton(int ix, int iy, int iwidth, int iheight, int icolor, int ihighlight) 
 
 	  {
-
-	    x = ix;
-
-	    y = iy;
-
-	    size = isize;
-
-	    basecolor = icolor;
-
-	    highlightcolor = ihighlight;
-
-	    currentcolor = basecolor;
-
+		  super(ix, iy, iwidth, iheight, icolor, ihighlight);
 	  }
 
 
@@ -25,7 +13,7 @@ public class RectButton extends Button
 
 	  {
 
-	    if(overRect(surface, x, y, size, size) ) {
+	    if(overRect(surface, x, y, width, height) ) {
 
 	      over = true;
 
@@ -45,7 +33,7 @@ public class RectButton extends Button
 
 
 
-	  void draw(PApplet surface) 
+	 public void draw(PApplet surface) 
 
 	  {
 
@@ -53,7 +41,7 @@ public class RectButton extends Button
 
 	    surface.fill(currentcolor);
 
-	    surface.rect(x, y, size, size);
+	    surface.rect(x, y, width, height);
 
 	  }
 
