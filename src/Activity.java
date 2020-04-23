@@ -1,30 +1,51 @@
+import java.util.Date;
 
 public class Activity {
 
+	// FIELDS
 	private int duration;
-	private String activityName;
-	private double startTime;
+	private String description;
+	private Date date;	
+	public enum Type {Exercise, Leisure, Meal, School, Sleep, Work, Call, Other};
+	private Type type;
 	
-	public Activity(int duration, String activityName, double startTime) {
+	// CONSTRUCTOR
+	public Activity(Type type, int duration, String description, Date date) 
+	{
+		this.type = type;
 		this.duration = duration;
-		this.activityName = activityName;
-		this.startTime = startTime;
+		this.description = description;
+		this.date = date;
 	}
 	
-	public void setDuration(int amount) {
+	// METHODS
+	public void setDuration(int amount)   
+	{
 		duration = amount;
 	}
 	
-	public void setStartTime(double time) {
-		startTime = time;
+	public void setStartTime(Date d) 
+	{
+		date = d;
 	}
 	
-	public int getDuration() {
+	public int getDuration() 
+	{
 		return duration;
 	}
 	
-	public double getStartTime() {
-		return startTime;
+	public Date getDate() 
+	{
+		return date;
 	}
 	
+	public String getDescription()
+	{
+		return description;
+	}
+	
+	public String getTypeName()
+	{
+		return type.toString();
+	}	
 }
