@@ -20,6 +20,7 @@ public class ActivityPopUp
 	}
 	
 	// METHODS
+	// Makes the edit activity questionnaire appear
 	public void pop()
 	{
 	    int indOfAct = matchActivity();
@@ -28,7 +29,7 @@ public class ActivityPopUp
 	    int indOfDuration = matchDuration();
 	    String description = a.getDescription();
 		
-		System.out.println(">> " + indOfAct);
+		//System.out.println(">> " + indOfAct);
 	    String a = (String) JOptionPane.showInputDialog(null, "Select type of activity, then press OK", "New Activity", 
 	    		JOptionPane.QUESTION_MESSAGE, null, activities, activities[indOfAct]);
 	  
@@ -44,11 +45,19 @@ public class ActivityPopUp
 			    	String details = JOptionPane.showInputDialog(null, "Enter any specific details of activity", description);
 			    }
 		    }
-	    }
-	    
+	    } 
 	    //	    Activity one = new Activity(a, duration, details, t);	
 	}
 	
+	// Makes the delete activity questionnaire appear
+    public void popDeletePanel(Activity a, DrawingSurface surface)
+    {
+    	if (JOptionPane.showConfirmDialog(null, "Delete this activity?", "Select an option", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) 
+    	{
+    	    // delete the activity
+    		surface.deleteActivity(a);
+    	}
+    }
 	
 	public int matchActivity() { // detects the which String in array matches activity for a
 		for(int i = 0; i < activities.length; i++) {

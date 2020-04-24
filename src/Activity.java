@@ -11,13 +11,15 @@ public class Activity
 	private Calendar cal;	
 	public enum Type {Exercise, Leisure, Meal, School, Sleep, Work, Call, Other}; // call this by writing Acitivity.Type.Leisure
 	public Type type;
+	private boolean exists = true; // this field is only used to help determine whether the delete-activity-popup should appear
 	
 	// CONSTRUCTOR
 	public Activity()
 	{
 		type = Type.Leisure;
 		duration = 0;
-		description = "";		
+		description = "";
+		exists = false;
 	}
 	public Activity(Type type, int duration, String description, Calendar cal) 
 	{
@@ -68,4 +70,9 @@ public class Activity
 		}
 		return foo;
 	}	
+	
+	public boolean getExists()
+	{
+		return exists;
+	}
 }

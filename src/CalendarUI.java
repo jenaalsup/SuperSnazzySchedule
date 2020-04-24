@@ -140,14 +140,14 @@ public class CalendarUI
 			//double actX = p.getX();
 			//double actY = p.getY();
 			//int d = a.getDuration();
-			if ( b.pointIn(x, y) ) //isPointInsideActivity(x, y, (int)actX, (int)actY, d) )
+			if (b.pointIn(x, y)) //isPointInsideActivity(x, y, (int)actX, (int)actY, d) )
 			{
 				System.out.println(">>> " + a.getTypeName());
 				return a;
 			}
 		}
 		Activity a = new Activity();
-		System.out.println("No Matcn>>> " + a.getTypeName());
+		System.out.println("No Match>>> " + a.getTypeName());
 		return a;
 	}
 	

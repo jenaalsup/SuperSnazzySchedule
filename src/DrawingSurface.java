@@ -1,8 +1,10 @@
 import java.awt.Point;
+import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.*;
 import processing.core.PApplet;
+import processing.event.MouseEvent;
 
 public class DrawingSurface extends PApplet
 {
@@ -45,27 +47,46 @@ public class DrawingSurface extends PApplet
 		r.update(this);
 	}
 	
-	public void mousePressed()
+	public void mousePressed(MouseEvent e)
 	{
-		if (r.over(this))
+		if (e.getModifiers() == InputEvent.BUTTON3_MASK) // right click
 		{
-			ActivityPopUp popup = new ActivityPopUp();
-			popup.pop();
-		}	
-		else if (cal.over(this))
+			Activity a = cal.getActivityFromGridLoc(this, mouseX, mouseY);
+			if (a.getExists())
+			{
+				ActivityPopUp deletepopup = new ActivityPopUp(a);
+				deletepopup.popDeletePanel(a, this);
+			}
+		}
+		else // left click
 		{
-	//		Point p = cal.mousePressed(this);
-	//		int x = p.x;
-	//		int y = p.y;
-			// the x,y coordinate of the grid needs to be converted to time and day and then entered as a parameter to popup
-			ActivityPopUp popup = new ActivityPopUp(cal.getActivityFromGridLoc(this, mouseX, mouseY));
-			popup.pop();
-			
+			if (r.over(this))
+			{
+				ActivityPopUp popup = new ActivityPopUp();
+				popup.pop();
+			}	
+			else if (cal.over(this))
+			{
+				//		Point p = cal.mousePressed(this);
+				//		int x = p.x;
+				//		int y = p.y;
+				// the x,y coordinate of the grid needs to be converted to time and day and then entered as a parameter to popup
+				ActivityPopUp popup = new ActivityPopUp(cal.getActivityFromGridLoc(this, mouseX, mouseY));
+				popup.pop();		
+			}
 		}
 	}
 	
+	// Returns an ArrayList of all the activities
 	public ArrayList<Activity> getActivityList()
 	{
 		return activities;
+	}
+	
+	// This deletes the first activity in the ArrayList with those aspects but if we have two of the same 
+	// activity and they try to delete the second one in the list then the first one will get deleted :/
+	public void deleteActivity(Activity a)
+	{
+		activities.remove(a);
 	}
 }
