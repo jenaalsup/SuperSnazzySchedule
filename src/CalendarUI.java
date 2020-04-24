@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import processing.core.PApplet;
 
@@ -12,8 +13,9 @@ public class CalendarUI
 	float colWidth;
 	float rowHeight;
 	// red, orange, yellow, green, light blue, dark blue, purple, pink
-	int[] colorArray = new int[] {16711680, 16679424, 15790080, 5301840, 6605030, 3289850, 6553750, 16737535}; // not being used yet
-
+	String[] colorArray = new String[] {"255,0,0", "254,130,0", "240,240,0", "80,230,80", "100,200,230", "50,50,250", "100,0,150", "255,100,255"}; // not being used yet
+	String[] activities = {"Exercise", "Leisure", "Meal", "School", "Sleep", "Work", "Call", "Other"};
+	
 	// CONSTRUCTOR
 	public CalendarUI()
 	{
@@ -60,8 +62,8 @@ public class CalendarUI
 	{
 		surface.fill(20);
 		int x = 5; // constant
-		int y = 33; // starting y-position
-		int yinterval = 27; // y-increment
+		int y = 25; // starting y-position
+		int yinterval = 26; // y-increment
 		surface.text("8 AM", x, y);
 		surface.text("9 AM", x, y + yinterval);
 		surface.text("10 AM", x-3, y + 2 * yinterval);
@@ -127,11 +129,36 @@ public class CalendarUI
 	
 	public void displayActivity(PApplet surface, Activity a)
 	{
+		width = surface.width - 400;
+		height = surface.height - 40;
 		String name = a.getTypeName();
 		int day =  a.getDate().getDay(); // these have lines through them because the library is supposedly not supposed to be used
 		int hour = a.getDate().getHours();
 		int mins = a.getDate().getMinutes();
-		//System.out.println("day: " + day + "hour: " + hour);
-		surface.text(name, 75 + day * colWidth, 33 + hour * rowHeight + (rowHeight * mins / 60));
+		String color = "";
+		float x = 45 + day * colWidth;
+		float y = 20 + hour * rowHeight + (rowHeight * mins / 60);
+		
+		for(int i = 0; i < activities.length; i++) { // finds color match for array
+			String s = activities[i];
+			if(s.equals(a.getTypeName()))
+				color = colorArray[i];
+		}
+		
+		int r = Integer.parseInt(color.substring(0, color.indexOf(',')));
+		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
+		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));
+		
+		
+//		System.out.println("r: " + r);
+//		System.out.println("g: " + g);
+//		System.out.println("b: " + b);
+
+		
+		surface.fill(r, g, b);
+		surface.rect(x, y, width/7 -10, (height/24) * a.getDuration());
+		
+		surface.fill(255);
+		surface.text(name, x + 30, y + 20);
 	}
 }

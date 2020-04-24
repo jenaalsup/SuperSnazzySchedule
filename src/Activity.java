@@ -15,10 +15,11 @@ public class Activity
 	// CONSTRUCTOR
 	public Activity()
 	{
-		type = Type.Exercise;
+		type = Type.Leisure;
 		duration = 0;
 		description = "";
-		cal = null;	
+//		cal.set(1,1,1,1,1);	
+		
 	}
 	public Activity(Type type, int duration, String description, Calendar cal) 
 	{
@@ -32,6 +33,14 @@ public class Activity
 	public void setDuration(int amount)   
 	{
 		duration = amount;
+	}
+	
+	public void setType(String s) {
+		type = Type.valueOf(s);
+	}
+	
+	public void setDate() {
+		
 	}
 	
 	public int getDuration() 
