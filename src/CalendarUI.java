@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Point;
+
 import processing.core.PApplet;
 
 
@@ -54,16 +55,18 @@ public class CalendarUI
 		for (Activity a : surface.getActivityList())
 		{
 			displayActivity(surface, a);
+			// draw the box - for testing purposes only
+		//	Box b = getBoxFromActivity(a);
+		//	surface.rect(b.x, b.y, b.width, b.height);
 		}
-		
 	}
 
 	public void drawTimeAxis(PApplet surface)
 	{
 		surface.fill(20);
 		int x = 5; // constant
-		int y = 25; // starting y-position
-		int yinterval = 26; // y-increment
+		int y = 33; // starting y-position
+		int yinterval = 27; // y-increment
 		surface.text("8 AM", x, y);
 		surface.text("9 AM", x, y + yinterval);
 		surface.text("10 AM", x-3, y + 2 * yinterval);
@@ -120,25 +123,79 @@ public class CalendarUI
 
 	public Point determineWhichGridWasPressed(PApplet surface)
 	{
-		System.out.println(surface.mouseX + ", " + surface.mouseY);
+		//System.out.println(surface.mouseX + ", " + surface.mouseY);
 		int gridX = (int)((surface.mouseX - x) / colWidth);
 		int gridY = (int)((surface.mouseY - y) / rowHeight);
 		Point p = new Point(gridX, gridY);
 		return p;
 	}
 	
+	public Activity getActivityFromGridLoc(DrawingSurface surface, int x, int y)  // mouse x,y in pixels
+	{
+		
+		for (Activity a : surface.getActivityList())
+		{
+			Box b;
+			b = getBoxFromActivity(a);
+			//double actX = p.getX();
+			//double actY = p.getY();
+			//int d = a.getDuration();
+			if ( b.pointIn(x, y) ) //isPointInsideActivity(x, y, (int)actX, (int)actY, d) )
+			{
+				System.out.println(">>> " + a.getTypeName());
+				return a;
+			}
+		}
+		Activity a = new Activity();
+		System.out.println("No Matcn>>> " + a.getTypeName());
+		return a;
+	}
+	
+	public Box getBoxFromActivity(Activity a)
+	{
+		int day =  a.getDate().getDay();
+		int hour = a.getDate().getHours();
+		int mins = a.getDate().getMinutes();
+		int x =(int)(45 + day * colWidth);
+		int y = (int)(20 + hour * rowHeight + (rowHeight * mins / 60));  // upper y coord
+		int height =  (int)(rowHeight * a.getDuration());
+		Box b = new Box(x, y, (int)colWidth, height);
+		return b;
+	}
+	
+	public boolean isPointInsideActivity(int x, int y, int actX, int actY, int d)
+	{
+		int gx, gy;
+		gx = (int)((x - this.x)/colWidth);
+		gy = (int)((y - this.y)/rowHeight);
+		System.out.println("x,y:" + x + ", " + y + " gx,gy:" + gx + ", " + gy + " actX,actY:" + actX + ", " + actY);
+		if (gx == actX && gy >= actY && y <= actY + d/2)
+			return true;
+		else
+			return false;
+	}
+	
+	public Point getPixelCoordsFromActivity(Activity a)
+	{
+		int day =  a.getDate().getDay(); // these have lines through them because the library is supposedly not supposed to be used but we're using it anyway #savage
+		int hour = a.getDate().getHours();
+		int mins = a.getDate().getMinutes();
+		int x =(int)(45 + day * colWidth);
+		int y = (int)(20 + hour * rowHeight + (rowHeight * mins / 60));
+		Point p = new Point(x, y);
+		return p;
+	}
 	public void displayActivity(PApplet surface, Activity a)
 	{
 		width = surface.width - 400;
 		height = surface.height - 40;
 		String name = a.getTypeName();
-		int day =  a.getDate().getDay(); // these have lines through them because the library is supposedly not supposed to be used
-		int hour = a.getDate().getHours();
-		int mins = a.getDate().getMinutes();
-		String color = "";
-		float x = 45 + day * colWidth;
-		float y = 20 + hour * rowHeight + (rowHeight * mins / 60);
 		
+		Point p;
+		p = getPixelCoordsFromActivity(a);
+		
+		String color = "";
+	
 		for(int i = 0; i < activities.length; i++) { // finds color match for array
 			String s = activities[i];
 			if(s.equals(a.getTypeName()))
@@ -147,18 +204,17 @@ public class CalendarUI
 		
 		int r = Integer.parseInt(color.substring(0, color.indexOf(',')));
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
-		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));
-		
+		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 		
 //		System.out.println("r: " + r);
 //		System.out.println("g: " + g);
 //		System.out.println("b: " + b);
-
 		
 		surface.fill(r, g, b);
-		surface.rect(x, y, width/7 -10, (height/24) * a.getDuration());
+		surface.rect((float)p.getX(), (float)p.getY(), width/7 - 10, (height/24) * a.getDuration());
 		
 		surface.fill(255);
-		surface.text(name, x + 30, y + 20);
+		surface.stroke(10);
+		surface.text(name, (float)p.getX() + 30, (float)p.getY() + 20);
 	}
 }

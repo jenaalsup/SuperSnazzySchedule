@@ -17,9 +17,7 @@ public class Activity
 	{
 		type = Type.Leisure;
 		duration = 0;
-		description = "";
-//		cal.set(1,1,1,1,1);	
-		
+		description = "";		
 	}
 	public Activity(Type type, int duration, String description, Calendar cal) 
 	{
@@ -38,11 +36,12 @@ public class Activity
 	public void setType(String s) {
 		type = Type.valueOf(s);
 	}
-	
-	public void setDate() {
+/*	
+	public void setDate() 
+	{
 		
 	}
-	
+*/	
 	public int getDuration() 
 	{
 		return duration;
@@ -60,6 +59,13 @@ public class Activity
 	
 	public String getTypeName()
 	{
-		return type.toString();
+		String foo = "";
+		try {
+			foo = type.toString();
+		}
+		catch (NullPointerException n) {
+			return "<null>";
+		}
+		return foo;
 	}	
 }

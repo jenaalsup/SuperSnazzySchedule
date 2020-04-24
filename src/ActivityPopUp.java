@@ -28,14 +28,17 @@ public class ActivityPopUp
 	    int indOfDuration = matchDuration();
 	    String description = a.getDescription();
 		
-		
-	    String a = (String) JOptionPane.showInputDialog(null, "Select type of activity, then press OK", "New Activity", JOptionPane.QUESTION_MESSAGE, null, activities, activities[indOfAct]);
+		System.out.println(">> " + indOfAct);
+	    String a = (String) JOptionPane.showInputDialog(null, "Select type of activity, then press OK", "New Activity", 
+	    		JOptionPane.QUESTION_MESSAGE, null, activities, activities[indOfAct]);
 	  
 	    if ((a != null) && (a.length() > 0)) {
-	    	String t = (String) JOptionPane.showInputDialog(null, "Select starting time, then press OK", "Select Start Time", JOptionPane.QUESTION_MESSAGE, null, times, times[indOfTime]);
+	    	String t = (String) JOptionPane.showInputDialog(null, "Select starting time, then press OK", "Select Start Time", 
+	    			JOptionPane.QUESTION_MESSAGE, null, times, times[indOfTime]);
 		   
 	    	if ((t != null) && (t.length() > 0)) {
-			    String duration = (String) JOptionPane.showInputDialog(null, "Select duration of activity, then press OK", "Select Duration", JOptionPane.QUESTION_MESSAGE, null, durations, durations[indOfDuration]);
+			    String duration = (String) JOptionPane.showInputDialog(null, "Select duration of activity, then press OK", 
+			    		"Select Duration", JOptionPane.QUESTION_MESSAGE, null, durations, durations[indOfDuration]);
 			   
 			    if ((duration != null) && (duration.length() > 0)) {	 
 			    	String details = JOptionPane.showInputDialog(null, "Enter any specific details of activity", description);
@@ -48,13 +51,13 @@ public class ActivityPopUp
 	
 	
 	public int matchActivity() { // detects the which String in array matches activity for a
-		 for(int i = 0; i < activities.length; i++) {
-		    	String s = activities[i];
-		    	if(a.getTypeName().equals(s)) {
-		    		return i;
-		    	}
-		    }
-		 return 0;
+		for(int i = 0; i < activities.length; i++) {
+	    	String s = activities[i];
+	    	if(a.getTypeName().equals(s)) {
+	    		return i;
+	    	}
+		}
+		return 0;
 	}
 	
 	public int matchTime() { // detects the which String in array matches time for a
@@ -81,6 +84,4 @@ public class ActivityPopUp
 	    }
 	    return 0;
 	}
-	
-	
 }
