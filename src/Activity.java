@@ -1,4 +1,6 @@
+import java.util.Calendar;
 import java.util.Date;
+
 import processing.core.PApplet;
 
 public class Activity 
@@ -6,28 +8,30 @@ public class Activity
 	// FIELDS
 	private int duration;
 	private String description;
-	private Date date;	
-	public enum Type {Exercise, Leisure, Meal, School, Sleep, Work, Call, Other};
-	private Type type;
+	private Calendar cal;	
+	public enum Type {Exercise, Leisure, Meal, School, Sleep, Work, Call, Other}; // call this by writing Acitivity.Type.Leisure
+	public Type type;
 	
 	// CONSTRUCTOR
-	public Activity(Type type, int duration, String description, Date date) 
+	public Activity()
+	{
+		type = Type.Exercise;
+		duration = 0;
+		description = "";
+		cal = null;	
+	}
+	public Activity(Type type, int duration, String description, Calendar cal) 
 	{
 		this.type = type;
 		this.duration = duration;
 		this.description = description;
-		this.date = date;
+		this.cal = cal;
 	}
 	
 	// METHODS
 	public void setDuration(int amount)   
 	{
 		duration = amount;
-	}
-	
-	public void setStartTime(Date d) 
-	{
-		date = d;
 	}
 	
 	public int getDuration() 
@@ -37,7 +41,7 @@ public class Activity
 	
 	public Date getDate() 
 	{
-		return date;
+		return cal.getTime();
 	}
 	
 	public String getDescription()

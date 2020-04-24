@@ -1,9 +1,6 @@
 import java.awt.Point;
-
-//import com.sun.pisces.Surface;
-
 import processing.core.PApplet;
-//import processing.event.MouseEvent;
+
 
 public class CalendarUI 
 {
@@ -14,7 +11,9 @@ public class CalendarUI
 	float height;
 	float colWidth;
 	float rowHeight;
-	
+	// red, orange, yellow, green, light blue, dark blue, purple, pink
+	int[] colorArray = new int[] {16711680, 16679424, 15790080, 5301840, 6605030, 3289850, 6553750, 16737535}; // not being used yet
+
 	// CONSTRUCTOR
 	public CalendarUI()
 	{
@@ -25,7 +24,7 @@ public class CalendarUI
 	}
 	
 	// METHODS
-	public void draw(PApplet surface)
+	public void draw(DrawingSurface surface)
 	{
 		width = surface.width - 400;
 		height = surface.height - 40;
@@ -49,6 +48,12 @@ public class CalendarUI
 		
 		drawTimeAxis(surface);
 		drawDayAxis(surface);
+		
+		for (Activity a : surface.getActivityList())
+		{
+			displayActivity(surface, a);
+		}
+		
 	}
 
 	public void drawTimeAxis(PApplet surface)
@@ -118,5 +123,15 @@ public class CalendarUI
 		int gridY = (int)((surface.mouseY - y) / rowHeight);
 		Point p = new Point(gridX, gridY);
 		return p;
+	}
+	
+	public void displayActivity(PApplet surface, Activity a)
+	{
+		String name = a.getTypeName();
+		int day =  a.getDate().getDay(); // these have lines through them because the library is supposedly not supposed to be used
+		int hour = a.getDate().getHours();
+		int mins = a.getDate().getMinutes();
+		//System.out.println("day: " + day + "hour: " + hour);
+		surface.text(name, 75 + day * colWidth, 33 + hour * rowHeight + (rowHeight * mins / 60));
 	}
 }
