@@ -1,32 +1,50 @@
+import java.awt.Point;
+
+//import com.sun.pisces.Surface;
+
 import processing.core.PApplet;
-import processing.event.MouseEvent;
+//import processing.event.MouseEvent;
 
 public class CalendarUI 
 {
+	// FIELDS
+	float x;
+	float y;
+	float width;
+	float height;
+	float colWidth;
+	float rowHeight;
+	
 	// CONSTRUCTOR
 	public CalendarUI()
 	{
-		
+		x = 40;
+		y = 20;
+		width = 0;
+		height = 0;
 	}
 	
 	// METHODS
 	public void draw(PApplet surface)
 	{
-		float width = surface.width - 400;
-		float height = surface.height - 40;
+		width = surface.width - 400;
+		height = surface.height - 40;
 	 	surface.fill(255);
-		surface.rect(40, 20, width, height, 40);	
+	 	surface.stroke(0);
+		surface.rect(x, y, width, height, 10);	
 		surface.stroke(0,0,0);
 		
 		// draw columns
-		for(float x = 20 + (width/7); x < width; x+=(width/7))
+		colWidth = width/7;
+		for(float x = this.x + colWidth; x < width; x+=colWidth)
 		{
-			surface.line(x, 20, x, 20 + height);
+			surface.line(x, y, x, y + height);
 		}
 		// draws rows
-		for(float y = 20 + (height/24); y < height; y +=(height/24)) 
+		rowHeight = height/24;
+		for(float y = this.y + rowHeight; y < height; y +=rowHeight) 
 		{
-			surface.line(40, y, 40 + width, y);
+			surface.line(x, y, x + width, y);
 		}
 		
 		drawTimeAxis(surface);
@@ -69,24 +87,36 @@ public class CalendarUI
 	{
 		surface.fill(20);
 		int y = 15; // constant
-		int x = 70; // starting x-position
-		int xinterval = 120; // x-increment
+		int x = 75; // starting x-position
+		int xinterval = (int)width/7; // x-increment
 		surface.text("Sunday", x, y);
-		surface.text("Monday", x + xinterval - 5, y);
-		surface.text("Tuesday", x + 2 * xinterval - 3, y);
-		surface.text("Wednesday", x + 3 * xinterval - 5, y);
+		surface.text("Monday", x + xinterval, y);
+		surface.text("Tuesday", x + 2 * xinterval, y);
+		surface.text("Wednesday", x + 3 * xinterval, y);
 		surface.text("Thursday", x + 4 * xinterval, y);
-		surface.text("Friday", x + 5 * xinterval + 13, y);
-		surface.text("Saturday", x + 6 * xinterval + 13, y);
+		surface.text("Friday", x + 5 * xinterval + 5, y);
+		surface.text("Saturday", x + 6 * xinterval, y);
 	}
 	
-	public void mousePressed()
+	public boolean over(PApplet surface)
 	{
-		int a = determineWhichGridWasPressed(); // ???
+		if (surface.mouseX >= x && surface.mouseX <= x + width && surface.mouseY >= y && surface.mouseY <= y + height) 
+			return true;
+		else 
+			return false;
+	}
+	
+	public Point mousePressed(PApplet surface)
+	{
+		return determineWhichGridWasPressed(surface);
 	}
 
-	public int determineWhichGridWasPressed() // ???
+	public Point determineWhichGridWasPressed(PApplet surface)
 	{
-		return 0;
+		System.out.println(surface.mouseX + ", " + surface.mouseY);
+		int gridX = (int)((surface.mouseX - x) / colWidth);
+		int gridY = (int)((surface.mouseY - y) / rowHeight);
+		Point p = new Point(gridX, gridY);
+		return p;
 	}
 }
