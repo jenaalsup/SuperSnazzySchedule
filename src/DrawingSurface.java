@@ -11,13 +11,15 @@ public class DrawingSurface extends PApplet
 	// FIELDS
 	RectButton r; 
 	CalendarUI cal; // the year must always be 3 and the month must always be 0
+	StatsBox s;
 	public static ArrayList<Activity> activities;
 	
 	// CONSTRUCTOR
 	public DrawingSurface()
 	{
-		r = new RectButton(930, 20, 320, 640, 50, 100);  
+		r = new RectButton(935, 20, 310, 310, 50, 100);  
 		cal = new CalendarUI();
+		s = new StatsBox();
 		
 		// These are test activities being entered - remove c1 and c2 in final version
 //		Calendar c1  = Calendar.getInstance();
@@ -42,8 +44,9 @@ public class DrawingSurface extends PApplet
 		r.draw(this);
 		this.fill(255);
 		textSize(150);
-		this.text("+", r.getX() + 100, r.getY() + 350);
+		this.text("+", r.getX() + 100, r.getY() + 195);
 		textSize(12);
+		s.draw(this);
 	}
 	
 	public void mouseMoved()
