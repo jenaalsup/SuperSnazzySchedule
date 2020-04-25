@@ -64,11 +64,12 @@ public class ActivityPopUp
 		    }
 	    } 
 	    
+	    
+	    
 	    int dayInt = 0;
 	    int hourInt = 0;
 	    
-	    if (duration != null)
-	    	duration = duration.replace(" hr", "");
+//	    duration = duration.replace(" hr", "");	    
 	
 
 	    for(int i = 0; i < days.length; i++) { // changes day input to index of array
@@ -87,8 +88,9 @@ public class ActivityPopUp
 	    
 	    a.setType(act);
 	    a.setDate(dayInt, hourInt);
-	    a.setDuration(Double.parseDouble(duration));	    
+	    a.setDuration(Double.parseDouble(duration.replace(" hr", "")));	    
 	    a.setExists(true);
+	    a.setDescription(details);
 	    
 	    surface.activities.add(a);
 	    
@@ -139,8 +141,7 @@ public class ActivityPopUp
     	String copy = "";
 		for(int i = 0; i < durations.length; i++) { 
 	    	String s = durations[i];
-    		copy = s.replace(" hr", "");
-    		if(("" + a.getDuration()).equals(copy)) {
+    		if((a.getDuration() == Double.parseDouble(s.replace(" hr", "")))) {
     			return i;
     		}
 	    }

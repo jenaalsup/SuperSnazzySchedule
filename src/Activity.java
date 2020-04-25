@@ -50,6 +50,10 @@ public class Activity
 		exists = b;
 	}
 	
+	public void setDescription(String s) {
+		description = s;
+	}
+	
 	public double getDuration() 
 	{
 		return duration;
