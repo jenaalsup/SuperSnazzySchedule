@@ -6,7 +6,7 @@ import processing.core.PApplet;
 public class Activity 
 {
 	// FIELDS
-	private int duration;
+	private double duration;
 	private String description;
 	private Calendar cal;	
 	public enum Type {Exercise, Leisure, Meal, School, Sleep, Work, Call, Other}; // call this by writing Acitivity.Type.Leisure
@@ -16,12 +16,14 @@ public class Activity
 	// CONSTRUCTOR
 	public Activity()
 	{
-		type = Type.Leisure;
-		duration = 0;
+		type = Type.Exercise;
+		duration = 0.5;
 		description = "";
 		exists = false;
+		cal = Calendar.getInstance();
+		cal.set(3,0,0,0,0); // default is sunday at 8am
 	}
-	public Activity(Type type, int duration, String description, Calendar cal) 
+	public Activity(Type type, double duration, String description, Calendar cal) 
 	{
 		this.type = type;
 		this.duration = duration;
@@ -30,7 +32,7 @@ public class Activity
 	}
 	
 	// METHODS
-	public void setDuration(int amount)   
+	public void setDuration(double amount)   
 	{
 		duration = amount;
 	}
@@ -38,19 +40,22 @@ public class Activity
 	public void setType(String s) {
 		type = Type.valueOf(s);
 	}
-/*	
-	public void setDate() 
+	
+	public void setDate(int day, int hour)  // takes in day of week and hour values to make less complicated
 	{
-		
+		cal.set(3, 0, day, hour, 0);
 	}
-*/	
-	public int getDuration() 
+	
+	public void setExists(boolean b) {
+		exists = b;
+	}
+	
+	public double getDuration() 
 	{
 		return duration;
 	}
-	
-	public Date getDate() 
-	{
+		
+	public Date getDate() {
 		return cal.getTime();
 	}
 	

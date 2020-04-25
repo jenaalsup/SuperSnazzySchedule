@@ -11,7 +11,7 @@ public class DrawingSurface extends PApplet
 	// FIELDS
 	RectButton r; 
 	CalendarUI cal; // the year must always be 3 and the month must always be 0
-	public ArrayList<Activity> activities;
+	public static ArrayList<Activity> activities;
 	
 	// CONSTRUCTOR
 	public DrawingSurface()
@@ -20,15 +20,15 @@ public class DrawingSurface extends PApplet
 		cal = new CalendarUI();
 		
 		// These are test activities being entered - remove c1 and c2 in final version
-		Calendar c1  = Calendar.getInstance();
-		c1.set(3, 0, 4, 8, 30); // Monday at 4:30 PM
-		Calendar c2 = Calendar.getInstance();
-		c2.set(3, 0, 4, 20, 0); // Wednesday at 4 AM
-		Activity a = new Activity(Activity.Type.Other , 4, "2 mile run", c1);  
-		Activity b = new Activity(Activity.Type.Call, 1, "facetime with coder gorls", c2);
+//		Calendar c1  = Calendar.getInstance();
+//		c1.set(3, 0, 4, 8, 30); // Monday at 4:30 PM
+//		Calendar c2 = Calendar.getInstance();
+//		c2.set(3, 0, 4, 20, 0); // Wednesday at 4 AM
+//		Activity a = new Activity(Activity.Type.Other , 4, "2 mile run", c1);  
+//		Activity b = new Activity(Activity.Type.Call, 1, "facetime with coder gorls", c2);
 		activities = new ArrayList<Activity>();
-		activities.add(a);
-		activities.add(b);		
+//		activities.add(a);
+//		activities.add(b);		
 	}
 	
 	//METHODS
@@ -40,6 +40,10 @@ public class DrawingSurface extends PApplet
 	 	this.fill(255);
 		cal.draw(this);
 		r.draw(this);
+		this.fill(255);
+		textSize(150);
+		this.text("+", r.getX() + 100, r.getY() + 185);
+		textSize(12);
 	}
 	
 	public void mouseMoved()
@@ -63,7 +67,7 @@ public class DrawingSurface extends PApplet
 			if (r.over(this))
 			{
 				ActivityPopUp popup = new ActivityPopUp();
-				popup.pop();
+				popup.pop(this);
 			}	
 			else if (cal.over(this))
 			{
@@ -72,13 +76,13 @@ public class DrawingSurface extends PApplet
 				//		int y = p.y;
 				// the x,y coordinate of the grid needs to be converted to time and day and then entered as a parameter to popup
 				ActivityPopUp popup = new ActivityPopUp(cal.getActivityFromGridLoc(this, mouseX, mouseY));
-				popup.pop();		
+				popup.pop(this);		
 			}
 		}
 	}
 	
 	// Returns an ArrayList of all the activities
-	public ArrayList<Activity> getActivityList()
+	public static ArrayList<Activity> getActivityList()
 	{
 		return activities;
 	}
@@ -88,5 +92,9 @@ public class DrawingSurface extends PApplet
 	public void deleteActivity(Activity a)
 	{
 		activities.remove(a);
+	}
+	
+	public void addActivity(Activity a) {
+		activities.add(a);
 	}
 }

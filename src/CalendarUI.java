@@ -65,8 +65,8 @@ public class CalendarUI
 	{
 		surface.fill(20);
 		int x = 5; // constant
-		int y = 33; // starting y-position
-		int yinterval = 27; // y-increment
+		int y = 35; // starting y-position
+		int yinterval = 26; // y-increment
 		surface.text("8 AM", x, y);
 		surface.text("9 AM", x, y + yinterval);
 		surface.text("10 AM", x-3, y + 2 * yinterval);
@@ -211,10 +211,10 @@ public class CalendarUI
 //		System.out.println("b: " + b);
 		
 		surface.fill(r, g, b);
-		surface.rect((float)p.getX(), (float)p.getY(), width/7 - 10, (height/24) * a.getDuration());
+		surface.rect((float)p.getX(), (float)p.getY(), width/7 - 10, (float) ((height/24) * a.getDuration()));
 		
 		surface.fill(255);
 		surface.stroke(10);
-		surface.text(name, (float)p.getX() + 30, (float)p.getY() + 20);
+		surface.text(name, (float)p.getX() + 40, (float)p.getY() + 10);
 	}
 }
