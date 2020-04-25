@@ -28,6 +28,6 @@ public class RectButton extends Button
 	  {
 	    surface.stroke(255);
 	    surface.fill(currentcolor);
-	    surface.rect(x, y, width, height);
+	    surface.rect(x, y, width, height, 10);
 	  }
 	}

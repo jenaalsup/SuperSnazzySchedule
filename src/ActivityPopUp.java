@@ -67,7 +67,8 @@ public class ActivityPopUp
 	    int dayInt = 0;
 	    int hourInt = 0;
 	    
-	    duration = duration.replace(" hr", "");
+	    if (duration != null)
+	    	duration = duration.replace(" hr", "");
 	
 
 	    for(int i = 0; i < days.length; i++) { // changes day input to index of array

@@ -16,7 +16,7 @@ public class DrawingSurface extends PApplet
 	// CONSTRUCTOR
 	public DrawingSurface()
 	{
-		r = new RectButton(930, 20, 320, 300, 50, 100);  
+		r = new RectButton(930, 20, 320, 640, 50, 100);  
 		cal = new CalendarUI();
 		
 		// These are test activities being entered - remove c1 and c2 in final version
@@ -42,7 +42,7 @@ public class DrawingSurface extends PApplet
 		r.draw(this);
 		this.fill(255);
 		textSize(150);
-		this.text("+", r.getX() + 100, r.getY() + 185);
+		this.text("+", r.getX() + 100, r.getY() + 350);
 		textSize(12);
 	}
 	
