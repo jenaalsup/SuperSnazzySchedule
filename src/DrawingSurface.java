@@ -21,16 +21,8 @@ public class DrawingSurface extends PApplet
 		cal = new CalendarUI();
 		s = new StatsBox();
 		
-		// These are test activities being entered - remove c1 and c2 in final version
-//		Calendar c1  = Calendar.getInstance();
-//		c1.set(3, 0, 4, 8, 30); // Monday at 4:30 PM
-//		Calendar c2 = Calendar.getInstance();
-//		c2.set(3, 0, 4, 20, 0); // Wednesday at 4 AM
-//		Activity a = new Activity(Activity.Type.Other , 4, "2 mile run", c1);  
-//		Activity b = new Activity(Activity.Type.Call, 1, "facetime with coder gorls", c2);
 		activities = new ArrayList<Activity>();
-//		activities.add(a);
-//		activities.add(b);		
+
 	}
 	
 	//METHODS
@@ -79,7 +71,7 @@ public class DrawingSurface extends PApplet
 				//		int y = p.y;
 				// the x,y coordinate of the grid needs to be converted to time and day and then entered as a parameter to popup
 				ActivityPopUp popup = new ActivityPopUp(cal.getActivityFromGridLoc(this, mouseX, mouseY));
-				popup.pop(this);		
+				popup.edit(this);		
 			}
 		}
 	}

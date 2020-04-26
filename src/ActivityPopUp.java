@@ -97,6 +97,75 @@ public class ActivityPopUp
 	    
 	}
 		
+	public void edit(DrawingSurface surface)
+	{
+		int indOfDay = matchDay();
+	    int indOfAct = matchActivity();
+	    int indOfTime = matchTime();
+	    int indOfDuration = matchDuration();
+	    String description = a.getDescription();
+	    String d = null;
+	    String act = null;
+	    String t = null;
+	    String duration = null;
+	    String details = null;
+	    Calendar c = Calendar.getInstance();
+
+		
+		//System.out.println(">> " + indOfAct);
+	    
+	    d = (String) JOptionPane.showInputDialog(null, "Select day, then press OK", "New Activity", 
+	    		JOptionPane.QUESTION_MESSAGE, null, days, days[indOfDay]);
+	    
+	    if ((d != null) && (d.length() > 0)) {
+		   act = (String) JOptionPane.showInputDialog(null, "Select type of activity, then press OK", "New Activity", 
+		    		JOptionPane.QUESTION_MESSAGE, null, acts, acts[indOfAct]);
+		  
+		    if ((act != null) && (act.length() > 0)) {
+		    	t = (String) JOptionPane.showInputDialog(null, "Select starting time, then press OK", "New Activity", 
+		    			JOptionPane.QUESTION_MESSAGE, null, times, times[indOfTime]);
+			   
+		    	if ((t != null) && (t.length() > 0)) {
+				    duration = (String) JOptionPane.showInputDialog(null, "Select duration of activity, then press OK", 
+				    		"New Activity", JOptionPane.QUESTION_MESSAGE, null, durations, durations[indOfDuration]);
+				   
+				    if ((duration != null) && (duration.length() > 0)) {	 
+				    	details = JOptionPane.showInputDialog(null, "Enter any specific details of activity", description);
+				    }
+			    }
+		    }
+	    } 
+	    
+	    
+	    
+	    int dayInt = 0;
+	    int hourInt = 0;
+	    
+//	    duration = duration.replace(" hr", "");	    
+	
+
+	    for(int i = 0; i < days.length; i++) { // changes day input to index of array
+	    	String s = days[i];
+	    	if(d.equals(s)) { 
+	    		dayInt = i;
+	    	}
+    	}
+	    
+	    for(int i = 0; i < times.length; i++) {  // changes time input to index of array
+	    	String s = times[i];
+	    	if(t.equals(s)) { 
+	    		hourInt = i;
+	    	}
+	 }	    
+	    
+	    a.setType(act);
+	    a.setDate(dayInt, hourInt);
+	    a.setDuration(Double.parseDouble(duration.replace(" hr", "")));	    
+	    a.setExists(true);
+	    a.setDescription(details);   
+	    
+	}
+	
 	// Makes the delete activity questionnaire appear
     public void popDeletePanel(Activity a, DrawingSurface surface)
     {
