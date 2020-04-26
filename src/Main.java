@@ -12,6 +12,7 @@ public class Main
 		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 		JFrame window = (JFrame)canvas.getFrame();
+		window.setTitle("SuperSnazzySchedule");
 
 		window.setSize(1270, 700);
 		window.setMinimumSize(new Dimension(100,100));
