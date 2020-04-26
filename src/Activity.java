@@ -12,7 +12,7 @@ public class Activity
 	private boolean exists = true; // this field is only used to help determine whether the delete-activity-popup should appear
 	
 	// CONSTRUCTORS
-	public Activity()
+	public Activity() // default activity
 	{
 		type = Type.Exercise;
 		duration = 0.5;

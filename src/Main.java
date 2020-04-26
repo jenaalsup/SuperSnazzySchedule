@@ -13,6 +13,7 @@ public class Main
 		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 		JFrame window = (JFrame)canvas.getFrame();
 
+		window.setTitle("SuperSnazzySchedule");
 		window.setSize(1270, 700);
 		window.setMinimumSize(new Dimension(100,100));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,4 +23,3 @@ public class Main
 		canvas.requestFocus();
 	}	
 }
-
