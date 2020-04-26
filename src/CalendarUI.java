@@ -60,8 +60,8 @@ public class CalendarUI
 	{
 		surface.fill(20);
 		int x = 5; // constant
-		int y = 35; // starting y-position
-		int yinterval = 26; // y-increment
+		int y = 34; // starting y-position
+		int yinterval = 27; // y-increment
 		surface.text("8 AM", x, y);
 		surface.text("9 AM", x, y + yinterval);
 		surface.text("10 AM", x-3, y + 2 * yinterval);
