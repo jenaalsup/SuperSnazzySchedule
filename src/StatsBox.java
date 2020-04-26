@@ -8,7 +8,7 @@ public class StatsBox
 	private float height;
 	private int ybegin; // used for drawing the bars
 	private int xInterval; 
-	private int yInterval; // used for drawing the bars\
+	private int yInterval; // used for drawing the bars
 	String[] colorArray = new String[] {"255,0,0", "254,130,0", "240,240,0", "80,230,80", "100,200,230", "50,50,250", "100,0,150", "255,100,255"}; // not being used yet
 	String[] activities = {"Exercise", "Leisure", "Meal", "School", "Sleep", "Work", "Call", "Other"};
 
@@ -63,7 +63,7 @@ public class StatsBox
 		surface.text("9", x + xyInterval, ystart + 8 * yyInterval);
 		surface.text("10", x + xyInterval - 3, ystart + 9 * yyInterval);
 		surface.text("11", x + xyInterval - 3, ystart + 10 * yyInterval);
-		surface.text("12", x + xyInterval - 3, ystart + 11 * yyInterval);
+		surface.text("12+", x + xyInterval - 3, ystart + 11 * yyInterval);
 	}
 	
 	public void drawExerciseBar(DrawingSurface surface)
@@ -76,7 +76,7 @@ public class StatsBox
 				count += a.getDuration();
 			}
 		}
-		// need to set fill color to red
+
 		String color = "";
 		
 		for(int i = 0; i < activities.length; i++) { // finds color match for array
@@ -89,6 +89,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
@@ -115,7 +117,9 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
-		surface.fill(r,g,b);
+		surface.fill(r,g,b);	
+		if (count >= 12)
+			count = 12;
 		surface.rect(x + xInterval + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
 	
@@ -141,6 +145,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + xInterval * 2 + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
@@ -167,6 +173,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + xInterval * 3 + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
@@ -193,6 +201,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + xInterval * 4 + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
@@ -219,6 +229,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + xInterval * 5 + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
@@ -245,6 +257,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + xInterval * 6 + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}
@@ -271,6 +285,8 @@ public class StatsBox
 		int g = Integer.parseInt(color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')));
 		int b = Integer.parseInt(color.substring(color.lastIndexOf(',') + 1));		
 
+		if (count >= 12)
+			count = 12;
 		surface.fill(r,g,b);
 		surface.rect(x + xInterval * 7 + 33, (float)ybegin, 15f, (float)(yInterval * count));
 	}

@@ -1,7 +1,4 @@
-import java.util.Calendar;
-
 import javax.swing.JOptionPane;
-
 
 public class ActivityPopUp 
 {
@@ -11,7 +8,7 @@ public class ActivityPopUp
     String[] durations = {"0.5 hr", "1 hr", "1.5 hr", "2 hr", "2.5 hr", "3 hr", "3.5 hr", "4 hr", "4.5 hr", "5 hr", "5.5 hr", "6 hr", "6.5 hr", "7 hr", "7.5 hr", "8 hr", "8.5 hr", "9 hr", "9.5 hr", "10 hr", "10.5 hr", "11 hr", "11.5 hr", "12 hr"};
     String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     
-	// CONSTRUCTOR
+	// CONSTRUCTORS
 	public ActivityPopUp()
 	{	
 		a = new Activity();
@@ -37,54 +34,52 @@ public class ActivityPopUp
 	    String t = null;
 	    String duration = null;
 	    String details = null;
-	    Calendar c = Calendar.getInstance();
 
-		
-		//System.out.println(">> " + indOfAct);
-	    
+
 	    d = (String) JOptionPane.showInputDialog(null, "Select day, then press OK", "New Activity", 
 	    		JOptionPane.QUESTION_MESSAGE, null, days, days[indOfDay]);
 	    
-	    if ((d != null) && (d.length() > 0)) {
+	    if ((d != null) && (d.length() > 0)) 
+	    {
 		   act = (String) JOptionPane.showInputDialog(null, "Select type of activity, then press OK", "New Activity", 
 		    		JOptionPane.QUESTION_MESSAGE, null, acts, acts[indOfAct]);
 		  
-		    if ((act != null) && (act.length() > 0)) {
+		    if ((act != null) && (act.length() > 0)) 
+		    {
 		    	t = (String) JOptionPane.showInputDialog(null, "Select starting time, then press OK", "New Activity", 
 		    			JOptionPane.QUESTION_MESSAGE, null, times, times[indOfTime]);
 			   
-		    	if ((t != null) && (t.length() > 0)) {
+		    	if ((t != null) && (t.length() > 0)) 
+		    	{
 				    duration = (String) JOptionPane.showInputDialog(null, "Select duration of activity, then press OK", 
 				    		"New Activity", JOptionPane.QUESTION_MESSAGE, null, durations, durations[indOfDuration]);
 				   
-				    if ((duration != null) && (duration.length() > 0)) {	 
+				    if ((duration != null) && (duration.length() > 0)) 
+				    {	 
 				    	details = JOptionPane.showInputDialog(null, "Enter any specific details of activity", description);
 				    }
 			    }
 		    }
-	    } 
-	    
-	    
+	    }   
 	    
 	    int dayInt = 0;
-	    int hourInt = 0;
-	    
-//	    duration = duration.replace(" hr", "");	    
-	
+	    int hourInt = 0;   	
 
-	    for(int i = 0; i < days.length; i++) { // changes day input to index of array
+	    // changes day input to index of array
+	    for(int i = 0; i < days.length; i++) 
+	    {
 	    	String s = days[i];
-	    	if(d.equals(s)) { 
+	    	if(d.equals(s)) 
 	    		dayInt = i;
-	    	}
     	}
 	    
-	    for(int i = 0; i < times.length; i++) {  // changes time input to index of array
+	    // changes time input to index of array
+	    for(int i = 0; i < times.length; i++) 
+	    {
 	    	String s = times[i];
-	    	if(t.equals(s)) { 
+	    	if(t.equals(s)) 
 	    		hourInt = i;
-	    	}
-	 }	    
+	    }	    
 	    
 	    a.setType(act);
 	    a.setDate(dayInt, hourInt);
@@ -92,9 +87,7 @@ public class ActivityPopUp
 	    a.setExists(true);
 	    a.setDescription(details);
 	    
-	    surface.activities.add(a);
-	    
-	    
+	    surface.activities.add(a);    
 	}
 		
 	public void edit(DrawingSurface surface)
@@ -109,61 +102,56 @@ public class ActivityPopUp
 	    String t = null;
 	    String duration = null;
 	    String details = null;
-	    Calendar c = Calendar.getInstance();
-
-		
-		//System.out.println(">> " + indOfAct);
-	    
+    
 	    d = (String) JOptionPane.showInputDialog(null, "Select day, then press OK", "New Activity", 
 	    		JOptionPane.QUESTION_MESSAGE, null, days, days[indOfDay]);
 	    
-	    if ((d != null) && (d.length() > 0)) {
+	    if ((d != null) && (d.length() > 0)) 
+	    {
 		   act = (String) JOptionPane.showInputDialog(null, "Select type of activity, then press OK", "New Activity", 
 		    		JOptionPane.QUESTION_MESSAGE, null, acts, acts[indOfAct]);
 		  
-		    if ((act != null) && (act.length() > 0)) {
+		    if ((act != null) && (act.length() > 0)) 
+		    {
 		    	t = (String) JOptionPane.showInputDialog(null, "Select starting time, then press OK", "New Activity", 
 		    			JOptionPane.QUESTION_MESSAGE, null, times, times[indOfTime]);
 			   
-		    	if ((t != null) && (t.length() > 0)) {
+		    	if ((t != null) && (t.length() > 0)) 
+		    	{
 				    duration = (String) JOptionPane.showInputDialog(null, "Select duration of activity, then press OK", 
 				    		"New Activity", JOptionPane.QUESTION_MESSAGE, null, durations, durations[indOfDuration]);
 				   
-				    if ((duration != null) && (duration.length() > 0)) {	 
+				    if ((duration != null) && (duration.length() > 0)) 
+				    {	 
 				    	details = JOptionPane.showInputDialog(null, "Enter any specific details of activity", description);
 				    }
 			    }
 		    }
 	    } 
-	    
-	    
-	    
+	       
 	    int dayInt = 0;
 	    int hourInt = 0;
-	    
-//	    duration = duration.replace(" hr", "");	    
-	
 
-	    for(int i = 0; i < days.length; i++) { // changes day input to index of array
+	    // changes day input to index of array
+	    for(int i = 0; i < days.length; i++) 
+	    { 
 	    	String s = days[i];
-	    	if(d.equals(s)) { 
+	    	if(d.equals(s))  
 	    		dayInt = i;
-	    	}
     	}
-	    
-	    for(int i = 0; i < times.length; i++) {  // changes time input to index of array
+	 // changes time input to index of array
+	    for(int i = 0; i < times.length; i++) 
+	    { 
 	    	String s = times[i];
-	    	if(t.equals(s)) { 
+	    	if(t.equals(s))  
 	    		hourInt = i;
-	    	}
 	 }	    
 	    
 	    a.setType(act);
 	    a.setDate(dayInt, hourInt);
 	    a.setDuration(Double.parseDouble(duration.replace(" hr", "")));	    
 	    a.setExists(true);
-	    a.setDescription(details);   
-	    
+	    a.setDescription(details);     
 	}
 	
 	// Makes the delete activity questionnaire appear
@@ -176,43 +164,49 @@ public class ActivityPopUp
     	}
     }
     
-    public int matchDay() {
-    	for(int i = 0; i < days.length; i++) {
+    public int matchDay() 
+    {
+    	for(int i = 0; i < days.length; i++) 
+    	{
 	    	String s = days[i];
-	    	if(a.getDate().getDay() == i) { 
+	    	if(a.getDate().getDay() == i) 
 	    		return i;
-	    	}
     	}
 		return 0;
     }
 	
-	public int matchActivity() { // detects the which String in array matches activity for a
-		for(int i = 0; i < acts.length; i++) {
+ // Detects the which String in array matches activity for a
+	public int matchActivity() 
+	{ 
+		for(int i = 0; i < acts.length; i++) 
+		{
 	    	String s = acts[i];
-	    	if(a.getTypeName().equals(s)) {
+	    	if(a.getTypeName().equals(s)) 
 	    		return i;
-	    	}
 		}
 		return 0;
 	}
 	
-	public int matchTime() { // detects the which String in array matches time for a
-		 for(int i = 0; i < times.length; i++) { 
+	// Detects the which String in array matches time for a
+	public int matchTime() 
+	{
+		 for(int i = 0; i < times.length; i++) 
+		 { 
 		    	String s = times[i];
-		    	if(a.getDate().getHours() == i) { 
+		    	if(a.getDate().getHours() == i) 
 		    		return i;
-		    	}
 		 }
 		 return 0;
 	}
 
-	public int matchDuration() { // detects the which String in array matches duration for a
-    	String copy = "";
-		for(int i = 0; i < durations.length; i++) { 
+	// Detects the which String in array matches duration for a
+	public int matchDuration() 
+	{
+		for(int i = 0; i < durations.length; i++) 
+		{ 
 	    	String s = durations[i];
-    		if((a.getDuration() == Double.parseDouble(s.replace(" hr", "")))) {
+    		if((a.getDuration() == Double.parseDouble(s.replace(" hr", ""))))
     			return i;
-    		}
 	    }
 	    return 0;
 	}

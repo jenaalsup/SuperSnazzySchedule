@@ -23,36 +23,21 @@ public class Button
 	}
 
 	// METHODS
-	public void draw(PApplet surface) 
-	{
-		
-	}
-		
 	public void update(PApplet surface) 
 	{
 		if (over(surface)) 
-		{
 			currentcolor = highlightcolor;
-		}
 
 		else 
-		{
 			currentcolor = basecolor;
-		}
 	}
 
 	public boolean pressed() 
 	{
 		if (over) 
-		{
-			// locked = true;
 			return true;
-		}
 		else 
-		{
-			// locked = false;
 			return false;
-		}
 	}
 
 	public boolean over(PApplet surface) 
@@ -64,14 +49,9 @@ public class Button
 	{
 
 		if (surface.mouseX >= x && surface.mouseX <= x + width && surface.mouseY >= y && surface.mouseY <= y + height) 
-		{
 			return true;
-		}
-
 		else 
-		{
 			return false;
-		}
 	}
 
 	public boolean overCircle(PApplet surface, int x, int y, int diameter)
@@ -79,20 +59,18 @@ public class Button
 		float disX = x - surface.mouseX;
 		float disY = y - surface.mouseY;
 		if (Math.sqrt(PApplet.sq(disX) + PApplet.sq(disY)) < diameter / 2) 
-		{
 			return true;
-		}
 		else 
-		{
 			return false;
-		}
 	}
 	
-	public int getX() {
+	public int getX() 
+	{
 		return x;
 	}
 	
-	public int getY() {
+	public int getY() 
+	{
 		return y;
 	}
 }

@@ -1,8 +1,5 @@
-import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.util.ArrayList;
-import java.util.Calendar;
-import javax.swing.*;
 import processing.core.PApplet;
 import processing.event.MouseEvent;
 
@@ -10,7 +7,7 @@ public class DrawingSurface extends PApplet
 {
 	// FIELDS
 	RectButton r; 
-	CalendarUI cal; // the year must always be 3 and the month must always be 0
+	CalendarUI cal;
 	StatsBox s;
 	public static ArrayList<Activity> activities;
 	
@@ -19,10 +16,8 @@ public class DrawingSurface extends PApplet
 	{
 		r = new RectButton(935, 20, 310, 310, 50, 100);  
 		cal = new CalendarUI();
-		s = new StatsBox();
-		
+		s = new StatsBox();	
 		activities = new ArrayList<Activity>();
-
 	}
 	
 	//METHODS
@@ -66,10 +61,6 @@ public class DrawingSurface extends PApplet
 			}	
 			else if (cal.over(this))
 			{
-				//		Point p = cal.mousePressed(this);
-				//		int x = p.x;
-				//		int y = p.y;
-				// the x,y coordinate of the grid needs to be converted to time and day and then entered as a parameter to popup
 				ActivityPopUp popup = new ActivityPopUp(cal.getActivityFromGridLoc(this, mouseX, mouseY));
 				popup.edit(this);		
 			}

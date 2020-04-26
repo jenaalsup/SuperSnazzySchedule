@@ -1,15 +1,18 @@
 
 public class Box 
 {
+	// FIELDS
 	public int x;
 	public int y;
 	public int width;
 	public int height;
 
+	// CONSTRUCTORS
 	public Box()
 	{
 		x = 0; y = 0; width = 0; height = 0;
 	}
+	
 	public Box(int x, int y, int width, int height)
 	{
 		this.x = x;
@@ -18,6 +21,7 @@ public class Box
 		this.height = height;
 	}
 	
+	// METHOD
 	public boolean pointIn(int x, int y)
 	{
 		if (x >= this.x && y >= this.y && x <= this.x + width && y <= this.y + height)
@@ -25,24 +29,4 @@ public class Box
 		else
 			return false;
 	}
-/*	
-	public int getX()
-	{
-		return x;
-	}
-	
-	public int getY()
-	{
-		return y;
-	}
-	
-	public int getWidth()
-	{
-		return width;
-	}
-	
-	public int getHeight()
-	{
-		return height;
-	}*/
 }
